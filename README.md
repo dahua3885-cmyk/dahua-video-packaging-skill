@@ -57,6 +57,8 @@ python <skill>/scripts/validate_portable_visuals.py <project>
 python <skill>/scripts/golden_regression.py verify
 ```
 
+同一渲染环境使用上面的逐像素回归；跨 Windows/Linux 的自动化检查使用 `verify --cross-platform`，只允许字体光栅化产生的小范围边缘差异，不放过布局或大面积色彩漂移。
+
 对外发布 Skill 前执行：
 
 ```powershell

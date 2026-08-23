@@ -15,6 +15,9 @@ ASSETS = SKILL_ROOT / "assets"
 GOLDEN = ASSETS / "golden"
 PROFILE = json.loads((ASSETS / "portable-profile.json").read_text(encoding="utf-8"))
 BODY_FONT = ASSETS / PROFILE["fonts"]["body"]["file"]
+CROSS_PLATFORM_MAX_CHANGED_RATIO = 0.05
+CROSS_PLATFORM_MAX_MEAN_ERROR = 3.0
+CROSS_PLATFORM_PIXEL_THRESHOLD = 12
 
 
 def draw_fixture(mode: str) -> Image.Image:
@@ -52,7 +55,20 @@ def create() -> int:
     return 0
 
 
-def verify() -> int:
+def difference_metrics(expected: Image.Image, actual: Image.Image) -> tuple[float, float]:
+    difference = ImageChops.difference(expected, actual)
+    channels = difference.split()
+    strongest = ImageChops.lighter(ImageChops.lighter(channels[0], channels[1]), channels[2])
+    significant = strongest.point(lambda value: 255 if value > CROSS_PLATFORM_PIXEL_THRESHOLD else 0)
+    changed_pixels = significant.histogram()[255]
+    changed_ratio = changed_pixels / (expected.width * expected.height)
+    histogram = difference.histogram()
+    channel_pixels = expected.width * expected.height * 3
+    mean_error = sum((index % 256) * count for index, count in enumerate(histogram)) / channel_pixels
+    return changed_ratio, mean_error
+
+
+def verify(cross_platform: bool = False) -> int:
     errors: list[str] = []
     for mode in ("fullframe", "small-window", "evidence-demo-landscape"):
         path = GOLDEN / f"{mode}.png"
@@ -61,8 +77,18 @@ def verify() -> int:
             continue
         expected = Image.open(path).convert("RGB")
         actual = draw_fixture(mode)
-        if ImageChops.difference(expected, actual).getbbox() is not None:
+        difference = ImageChops.difference(expected, actual)
+        if difference.getbbox() is None:
+            continue
+        if not cross_platform:
             errors.append(f"{path.name} 像素不一致")
+            continue
+        changed_ratio, mean_error = difference_metrics(expected, actual)
+        print(f"{path.name}: changed={changed_ratio:.4%}, mean_error={mean_error:.4f}")
+        if changed_ratio > CROSS_PLATFORM_MAX_CHANGED_RATIO or mean_error > CROSS_PLATFORM_MAX_MEAN_ERROR:
+            errors.append(
+                f"{path.name} 超出跨平台容差：changed={changed_ratio:.4%}, mean_error={mean_error:.4f}"
+            )
     if errors:
         print("黄金回归失败：")
         for error in errors:
@@ -75,8 +101,13 @@ def verify() -> int:
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("command", choices=("create", "verify"))
+    parser.add_argument(
+        "--cross-platform",
+        action="store_true",
+        help="允许不同操作系统字体光栅化造成的小范围边缘差异；布局和大面积色彩漂移仍会失败。",
+    )
     args = parser.parse_args()
-    return create() if args.command == "create" else verify()
+    return create() if args.command == "create" else verify(cross_platform=args.cross_platform)
 
 
 if __name__ == "__main__":
