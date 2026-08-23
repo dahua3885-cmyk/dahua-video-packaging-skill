@@ -1,0 +1,4 @@
+interface:
+  display_name: "可复现视频包装"
+  short_description: "固定视觉配置完成全画幅、小窗口或真实界面演示包装"
+  default_prompt: "Use $dahua-video-packaging with its locked portable profile to select exactly one packaging mode and produce or revise this talking-head video to publish-ready quality."

@@ -1,0 +1,144 @@
+{
+  "schemaVersion": 1,
+  "canvas": {
+    "width": 1920,
+    "height": 1080,
+    "defaultFps": 30
+  },
+  "safeArea": {
+    "x1": 40,
+    "y1": 40,
+    "x2": 1640,
+    "y2": 900
+  },
+  "speaker": {
+    "width": 210,
+    "height": 352,
+    "x": 1676,
+    "y": 690,
+    "cornerRadius": 18,
+    "borderWidth": 0,
+    "shadow": false,
+    "colorOverlay": false,
+    "anchorHairTopYMin": 45,
+    "anchorHairTopYMax": 60,
+    "anchorNoseCenterXMin": 97,
+    "anchorNoseCenterXMax": 113,
+    "maxLevelErrorDegrees": 1,
+    "staticCropPerSource": true,
+    "fixedForWholeVideo": true
+  },
+  "caption": {
+    "renderer": "ffmpeg-libass",
+    "fontFamily": "Noto Sans SC",
+    "fontFile": "fonts/NotoSansSC-VF.ttf",
+    "fontSize": 44,
+    "bold": true,
+    "textColor": "#FFFFFF",
+    "alignment": 2,
+    "marginLeft": 90,
+    "marginRight": 90,
+    "marginBottom": 90,
+    "borderStyle": 3,
+    "outlineColor": "#000000",
+    "backColor": "#000000",
+    "outline": 12,
+    "shadow": 0,
+    "maxTextWidth": 1340,
+    "maxBackgroundRightX": 1652,
+    "singleLine": true,
+    "fadeSeconds": 0.0,
+    "fullWidthBar": false
+  },
+  "highlight": {
+    "color": "#EBAB14",
+    "lineWidth": 3,
+    "cornerRadius": 10,
+    "targetPadding": 10,
+    "fillOpacity": 0.0,
+    "maxSimultaneous": 1,
+    "baseHoldBeforeSeconds": 0.12,
+    "labelByDefault": false
+  },
+  "composition": {
+    "layerOrder": [
+      "page",
+      "pageMotionAndHighlights",
+      "speaker",
+      "captions"
+    ],
+    "allowSourceCutsByDefault": false,
+    "allowSourceRetimingByDefault": false,
+    "allowSourceAudioReplacementByDefault": false,
+    "allowFullFrameEffectAfterSpeaker": false,
+    "muteAuxiliaryRecordings": true
+  },
+  "sourceAudit": {
+    "headSeconds": 2,
+    "tailSeconds": 2,
+    "scanIntervalSeconds": 1,
+    "forbiddenVisuals": [
+      "OBS",
+      "recording-controls",
+      "error-window",
+      "private-path",
+      "notification",
+      "unrelated-app"
+    ]
+  },
+  "verification": {
+    "defaultSourceCuts": 0,
+    "finalScanIntervalSecondsMax": 2,
+    "timelineCheckFractions": [
+      0.25,
+      0.5,
+      0.75,
+      0.95
+    ],
+    "requireFullLengthIntermediateAssets": true,
+    "requireDynamicSegmentPlayback": true
+  },
+  "cover": {
+    "enabledOnlyWhenRequested": true,
+    "width": 1920,
+    "height": 1080,
+    "backgroundColor": "#000000",
+    "fontFile": "fonts/SmileySans-Oblique.ttf",
+    "line1MaxChineseCharacters": 5,
+    "line1GradientTopToBottom": [
+      "#BFD9FE",
+      "#235394"
+    ],
+    "line2GradientTopToBottom": [
+      "#BFD9FE",
+      "#235394",
+      "#20365D"
+    ],
+    "line1FontSize": 174,
+    "line1TopY": 116,
+    "line1HorizontalAlignment": "center",
+    "line2FontSize": 82,
+    "line2TopY": 290,
+    "line2HorizontalAlignment": "center",
+    "homeGridSafeCrop": {
+      "x1": 555,
+      "y1": 0,
+      "x2": 1365,
+      "y2": 1080,
+      "previewWidth": 1080,
+      "previewHeight": 1440
+    },
+    "personCenterX": 960,
+    "personFrameWidth": 520,
+    "personFrameHeight": 924,
+    "personFrameX": 700,
+    "personFrameY": 185,
+    "personEdgeFeather": 56,
+    "personFromSourceVideoOnly": true,
+    "allowAIGeneratedFace": false,
+    "allowPersonGlow": false,
+    "allowPersonBorder": false,
+    "embeddedDurationSeconds": 0.1,
+    "framesAt30Fps": 3
+  }
+}

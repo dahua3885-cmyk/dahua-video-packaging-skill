@@ -1,0 +1,27 @@
+name: validate
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  reproducibility:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: dahua-video-packaging
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.14.3'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24.14.0'
+          cache: npm
+          cache-dependency-path: dahua-video-packaging/assets/runtime/package-lock.json
+      - run: python -m pip install -r assets/runtime/requirements-lock.txt
+      - run: npm ci --prefix assets/runtime --ignore-scripts --no-audit --no-fund
+      - run: python scripts/audit_open_source.py .
+      - run: python scripts/golden_regression.py verify
+      - run: python -m py_compile scripts/*.py

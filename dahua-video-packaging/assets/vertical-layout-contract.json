@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "mode": "vertical-evidence-demo",
+  "canvas": {
+    "width": 1080,
+    "height": 1920,
+    "defaultFps": 30,
+    "publishWidth": 1440,
+    "publishHeight": 2560,
+    "publishScale": 1.3333333333
+  },
+  "mainEvidenceSafeArea": {
+    "x1": 60,
+    "y1": 120,
+    "x2": 1020,
+    "y2": 1080
+  },
+  "speaker": {
+    "width": 450,
+    "height": 445,
+    "x": 580,
+    "y": 1285,
+    "cornerRadius": 48,
+    "objectFit": "cover",
+    "objectPosition": "50% 43%",
+    "fixedForWholeVideo": true
+  },
+  "caption": {
+    "fontFamily": "Noto Sans SC",
+    "fontSize": 48,
+    "fontWeight": 500,
+    "textColor": "#F4F4F1",
+    "x": 60,
+    "y": 1165,
+    "width": 960,
+    "height": 88,
+    "singleLine": true,
+    "positionFixedForWholeVideo": true
+  },
+  "cover": {
+    "sourceCoverFullScreenOnce": true,
+    "allowRepeatedCoverInSpeakerWindow": false,
+    "shiftSpeakerAudioCaptionAndSemanticTimelineTogether": true,
+    "freezeAfterUserConfirmation": true
+  },
+  "composition": {
+    "layerOrder": [
+      "mainEvidenceOrSemanticPage",
+      "pageMotionAndHighlights",
+      "speaker",
+      "captions"
+    ],
+    "reuseVisualContainerAcrossCaptionChanges": true,
+    "allowNearDuplicateTransitionLayers": false,
+    "allowSourceCutsByDefault": false,
+    "allowSourceRetimingByDefault": false,
+    "allowSourceAudioReplacementByDefault": false
+  },
+  "verification": {
+    "boundaryFramesBefore": 3,
+    "boundaryFramesAfter": 3,
+    "requireContinuousPlaybackAtVisualChanges": true,
+    "requireNativePublishRerender": true,
+    "allowUpscaledPreviewAsPublish": false,
+    "requireTextEdgeInspection": true
+  }
+}

@@ -1,0 +1,6 @@
+* text=auto eol=lf
+*.ttf binary
+*.png binary
+*.zip binary
+*.md whitespace=-blank-at-eof
+dahua-video-packaging/assets/fonts/*.txt whitespace=-trailing-space

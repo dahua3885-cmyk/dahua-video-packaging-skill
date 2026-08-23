@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "profileId": "dahua-portable-v1",
+  "profileVersion": "1.0.0",
+  "defaultStrict": true,
+  "creativeExtensionsAllowed": false,
+  "canvas": {
+    "vertical": {"width": 1080, "height": 1920, "publishWidth": 1440, "publishHeight": 2560},
+    "landscape": {"width": 1920, "height": 1080},
+    "fps": 30
+  },
+  "colors": {
+    "black": "#000000",
+    "paper": "#F7F4ED",
+    "white": "#FFFFFF",
+    "captionWhite": "#F4F4F1",
+    "yellow": "#F3B724",
+    "evidenceYellow": "#EBAB14",
+    "red": "#DB6A5D",
+    "coverBlueLight": "#BFD9FE",
+    "coverBlue": "#235394",
+    "coverBlueDark": "#20365D"
+  },
+  "allowedCssRgbFunctions": [
+    "rgba(0,0,0,0.46)",
+    "rgba(0,0,0,0.5)",
+    "rgba(0,0,0,0.54)",
+    "rgba(0,0,0,0.88)",
+    "rgba(0,0,0,0.95)",
+    "rgba(0,0,0,0.96)",
+    "rgba(0,0,0,0.98)",
+    "rgba(243,183,36,0.24)",
+    "rgba(243,183,36,0.72)",
+    "rgba(247,244,237,0.05)",
+    "rgba(247,244,237,0.14)"
+  ],
+  "fonts": {
+    "body": {
+      "family": "Noto Sans SC",
+      "file": "fonts/NotoSansSC-VF.ttf",
+      "sha256": "A3041811A78C361B1DE50F953C805E0244951C21C5BD412F7232EF0D899AF0DA",
+      "license": "OFL-NotoSansSC.txt"
+    },
+    "cover": {
+      "family": "Smiley Sans",
+      "file": "fonts/SmileySans-Oblique.ttf",
+      "sha256": "B447D7E781F08BC95C4C9F23BA71ED2B8EBB639AA7184485C71C4CA5AFCD25C4",
+      "license": "OFL-SmileySans.txt"
+    }
+  },
+  "motion": {
+    "allowedEases": ["linear", "power2.in", "power2.out", "power2.inOut", "power3.inOut"],
+    "allowedFamilies": ["fade", "short-slide", "underline-draw", "strike-draw", "arrow-draw", "semantic-reflow", "direct-cut", "short-crossfade"],
+    "forbiddenTerms": ["bounce", "elastic", "back.in", "back.out", "back.inOut", "spring", "wiggle", "shake", "particle", "confetti", "hue-rotate", "rotate(", "skew(", "repeat: -1", "repeat:-1", "yoyo: true", "yoyo:true"]
+  },
+  "runtime": {
+    "node": "24.14.0",
+    "npm": "11.9.0",
+    "hyperframes": "0.8.4",
+    "python": "3.14.3",
+    "pillow": "12.2.0",
+    "ffmpeg": {"versionPrefix": "8.0.1", "requireLibass": true}
+  },
+  "policy": {
+    "noAbsolutePathsInSkill": true,
+    "noUserIdentityInArtifacts": true,
+    "noSharedMutableProjectState": true,
+    "newColorsFontsOrMotionRequireNewProfileVersion": true
+  }
+}

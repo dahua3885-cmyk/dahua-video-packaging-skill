@@ -1,0 +1,14 @@
+{
+  "name": "dahua-video-packaging-runtime",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pinned local runtime for reproducible dahua-video-packaging renders.",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": "24.14.0",
+    "npm": "11.9.0"
+  },
+  "dependencies": {
+    "hyperframes": "0.8.4"
+  }
+}
