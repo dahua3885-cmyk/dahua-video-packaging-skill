@@ -16,6 +16,16 @@
 
 要求：Node `24.14.0`、npm `11.9.0`、Python `3.14.3`、Pillow `12.2.0`、FFmpeg `8.0.1`（含 libass）。
 
+从 GitHub 克隆并安装：
+
+```powershell
+git clone https://github.com/dahua3885-cmyk/dahua-video-packaging-skill.git
+cd dahua-video-packaging-skill
+python install.py
+```
+
+也可以直接从 [Releases](https://github.com/dahua3885-cmyk/dahua-video-packaging-skill/releases) 下载 Skill-only ZIP，解压后把 `dahua-video-packaging/` 放入 Codex Skills 目录。
+
 把 `dahua-video-packaging/` 文件夹放入 Codex Skills 目录，然后运行：
 
 ```powershell
