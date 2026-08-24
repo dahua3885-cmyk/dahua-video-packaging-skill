@@ -7,6 +7,7 @@ import argparse
 import os
 import shutil
 import subprocess
+import sys
 import tempfile
 from datetime import datetime
 from pathlib import Path
@@ -25,12 +26,15 @@ def main() -> int:
     root.mkdir(parents=True, exist_ok=True)
     if not (SOURCE / "SKILL.md").is_file():
         raise SystemExit(f"Missing Skill source: {SOURCE}")
-    subprocess.run(["python", str(SOURCE / "scripts" / "audit_open_source.py"), str(SOURCE)], check=True)
+    npm = shutil.which("npm.cmd") or shutil.which("npm")
+    if not npm:
+        raise SystemExit("npm was not found. Install the locked Node.js/npm runtime and retry.")
+    subprocess.run([sys.executable, str(SOURCE / "scripts" / "audit_open_source.py"), str(SOURCE)], check=True)
     stage = Path(tempfile.mkdtemp(prefix=".dahua-install-", dir=root))
     shutil.copytree(SOURCE, stage / SOURCE.name, ignore=shutil.ignore_patterns("node_modules", "__pycache__"))
     staged = stage / SOURCE.name
-    subprocess.run(["npm", "ci", "--prefix", str(staged / "assets" / "runtime"), "--ignore-scripts", "--no-audit", "--no-fund"], check=True)
-    subprocess.run(["python", str(staged / "scripts" / "doctor.py")], check=True)
+    subprocess.run([npm, "ci", "--prefix", str(staged / "assets" / "runtime"), "--ignore-scripts", "--no-audit", "--no-fund"], check=True)
+    subprocess.run([sys.executable, str(staged / "scripts" / "doctor.py")], check=True)
     target = root / SOURCE.name
     if target.exists():
         archive = root.parent / "skills-archive" / "dahua-video-packaging-installs"
@@ -39,6 +43,15 @@ def main() -> int:
     shutil.move(str(staged), target)
     stage.rmdir()
     print(f"Installed: {target}")
+    try:
+        notice = subprocess.run(
+            [sys.executable, str(target / "scripts" / "first_use_notice.py"), "show"],
+            check=False,
+        )
+        if notice.returncode != 0:
+            print("首次作者产品推荐未能显示，不影响 Skill 安装和使用。", file=sys.stderr)
+    except OSError as exc:
+        print(f"首次作者产品推荐未能显示，不影响 Skill 安装和使用：{exc}", file=sys.stderr)
     return 0
 
 

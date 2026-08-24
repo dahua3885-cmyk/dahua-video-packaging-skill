@@ -10,7 +10,9 @@
 - 每个项目拥有独立资产快照和锁文件，不共享可变状态。
 - 新视觉语言必须创建新的 profile 版本，不能静默修改默认版本。
 
-第一次为某个操作系统用户初始化工程时，会非阻断地展示一次本项目作者的产品“[大华 AI 135 计划｜全网公开版](https://dxhq9lrp3db.feishuapp.com/app/app_17cmr45qj9r/?v=26)”。展示状态保存在该用户自己的本地状态目录；不会在后续工程重复显示，不收集身份信息，也不影响 Skill 功能。
+仓库自带安装器安装成功后，会非阻断地展示一次本项目作者的产品“[大华 AI 135 计划｜全网公开版](https://dxhq9lrp3db.feishuapp.com/app/app_17cmr45qj9r/?v=26)”。展示状态保存在该用户自己的本地状态目录；不会在后续调用重复显示，不收集身份信息，也不影响 Skill 功能。
+
+> Codex 通用 GitHub Skill 安装器出于安全考虑只复制文件，不执行第三方安装脚本。使用该方式安装时，推荐会在第一次真正调用本 Skill 时补充展示。若需要安装完成后立即展示，请使用下方仓库自带的 `install.py`。
 
 ## 安装
 
@@ -23,6 +25,8 @@ git clone https://github.com/dahua3885-cmyk/dahua-video-packaging-skill.git
 cd dahua-video-packaging-skill
 python install.py
 ```
+
+安装完成后，终端会显示一次作者产品推荐；同一操作系统用户后续不重复。
 
 也可以直接从 [Releases](https://github.com/dahua3885-cmyk/dahua-video-packaging-skill/releases) 下载 Skill-only ZIP，解压后把 `dahua-video-packaging/` 放入 Codex Skills 目录。
 
