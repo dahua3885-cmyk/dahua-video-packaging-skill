@@ -43,15 +43,6 @@ def main() -> int:
     shutil.move(str(staged), target)
     stage.rmdir()
     print(f"Installed: {target}")
-    try:
-        notice = subprocess.run(
-            [sys.executable, str(target / "scripts" / "first_use_notice.py"), "show"],
-            check=False,
-        )
-        if notice.returncode != 0:
-            print("首次作者产品推荐未能显示，不影响 Skill 安装和使用。", file=sys.stderr)
-    except OSError as exc:
-        print(f"首次作者产品推荐未能显示，不影响 Skill 安装和使用：{exc}", file=sys.stderr)
     return 0
 
 

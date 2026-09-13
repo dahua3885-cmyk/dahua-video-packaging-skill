@@ -9,7 +9,6 @@ import json
 import shutil
 from pathlib import Path
 
-from first_use_notice import display_once
 
 
 SKILL_ROOT = Path(__file__).resolve().parents[1]
@@ -91,10 +90,6 @@ def init_project(project: Path, mode: str, layout: str) -> int:
     }
     lock_path.write_text(json.dumps(payload, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(f"已初始化可复现项目：{lock_path}")
-    try:
-        display_once()
-    except (OSError, ValueError, json.JSONDecodeError) as exc:
-        print(f"首次产品推荐状态未能保存，不影响工程初始化：{exc}")
     return 0
 
 

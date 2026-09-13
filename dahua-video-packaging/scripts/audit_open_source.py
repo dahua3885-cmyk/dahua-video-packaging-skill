@@ -35,7 +35,6 @@ def main() -> int:
     required = (
         "SKILL.md",
         "assets/portable-profile.json",
-        "assets/product-notice.json",
         "assets/fonts/OFL-NotoSansSC.txt",
         "assets/fonts/OFL-SmileySans.txt",
     )
